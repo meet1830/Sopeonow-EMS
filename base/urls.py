@@ -19,4 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('employee-list/', views.view_employees, name="view_employees")
 ]
