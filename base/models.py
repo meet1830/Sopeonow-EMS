@@ -5,29 +5,29 @@ from django.db import models
 
 class Role(models.Model):
     id = models.AutoField(primary_key=True)
-    role_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     objects = models.Manager()
 
     def __str__(self) -> str:
-        return self.role_name
+        return self.name
 
 
 class Department(models.Model):
     id = models.AutoField(primary_key=True)
-    department_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     objects = models.Manager()
 
     def __str__(self) -> str:
-        return self.department_name
+        return self.name
 
 
 class Employee(models.Model):
     name = models.CharField(max_length=100, null=True)
     dob = models.DateField(null=True)
     doj = models.DateField(null=True)
-    department_id = models.ForeignKey(
+    dept = models.ForeignKey(
         Department, on_delete=models.DO_NOTHING, max_length=50, null=True)
-    role_id = models.ForeignKey(
+    role = models.ForeignKey(
         Role, on_delete=models.DO_NOTHING, max_length=50, null=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=100, null=True)

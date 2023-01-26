@@ -7,6 +7,7 @@
 <table>
     <thead>
         <tr>
+            <th>Sr. No</th>
             <th>Name</th>
             <th>DOB</th>
             <th>Date of joining</th>
@@ -26,11 +27,12 @@
 
         {% for emp in employees %}
         <tr>
+            <td>{{emp.id}}</td>
             <td>{{emp.name}}</td>
             <td>{{emp.dob}}</td>
             <td>{{emp.doj}}</td>
-            <td>{{emp.department_id}}</td>
-            <td>{{emp.role_id}}</td>
+            <td>{{emp.dept}}</td>
+            <td>{{emp.role}}</td>
             <td>{{emp.city}}</td>
             <td>{{emp.state}}</td>
             <td>{{emp.country}}</td>
