@@ -2,8 +2,11 @@
 
 {% block content %}
 
-<h1>Home template</h1>
+<h1>Employees list</h1>
+<h3>Total number of employees: {{employees_count}}</h3>
+<a href="{% url 'add' %}">Add a new employee</a>
 
+{% if employees %}
 <table>
     <thead>
         <tr>
@@ -38,11 +41,18 @@
             <td>0</td>
             <td>{{emp.on_leave}}</td>
             <td>{{emp.active}}</td>
-            <td>Action</td>
+            <td>
+                <a href="{% url 'update' emp.id %}">Edit</a>
+            </td>
         </tr>
         {% endfor %}
 
     </tbody>
 </table>
+
+{% else %}
+<h3>No employees to show!</h3>
+
+{% endif %}
 
 {% endblock %}

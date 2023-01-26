@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .forms import AddEmployeeForm
 from .models import *
 
@@ -11,11 +11,9 @@ def home(request):
 
 def view_employees(request):
     employees = Employee.objects.all()
-    if employees == None:
-        return HttpResponse('no employees to show')
-    else:
-        context = {'employees': employees}
-        return render(request, 'base/view_employees.html', context)
+    employees_count = employees.count()
+    context = {'employees': employees, 'employees_count': employees_count}
+    return render(request, 'base/view_employees.html', context)
 
 
 def add_employee(request):
@@ -24,7 +22,18 @@ def add_employee(request):
         form = AddEmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add')
+            return redirect('view')
+    return render(request, 'base/add_employee.html', {'form': form})
+
+
+def update_employee(request, pk):
+    employee = get_object_or_404(Employee, pk=pk)
+    form = AddEmployeeForm(instance=employee)
+    if request.method == 'POST':
+        form = AddEmployeeForm(request.POST, instance=employee)
+        if form.is_valid():
+            form.save()
+            return redirect('view')
     return render(request, 'base/add_employee.html', {'form': form})
 
 

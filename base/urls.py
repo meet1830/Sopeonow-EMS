@@ -23,6 +23,8 @@ urlpatterns = [
     path('employee/view', views.view_employees, name="view"),
 
     path('employee/add', views.add_employee, name="add"),
-    path('member/ajax/load-roles/', views.load_roles,
+    path('employee/ajax/load-roles/', views.load_roles,
          name='ajax_load_roles'),  # AJAX
+
+    path('employee/update/<int:pk>/', views.update_employee, name='update'),
 ]
