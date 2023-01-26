@@ -37,7 +37,16 @@ def update_employee(request, pk):
     return render(request, 'base/add_employee.html', {'form': form})
 
 
+def delete_employee(request, pk):
+    employee = get_object_or_404(Employee, pk=pk)
+    if request.method == 'POST':
+        employee.delete()
+        return redirect('view')
+    return render(request, 'base/delete.html', {'obj': employee})
+
 # AJAX
+
+
 def load_roles(request):
     department_id = request.GET.get('department_id')
     roles = Role.objects.filter(department_id=department_id).all()

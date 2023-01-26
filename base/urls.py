@@ -27,4 +27,6 @@ urlpatterns = [
          name='ajax_load_roles'),  # AJAX
 
     path('employee/update/<int:pk>/', views.update_employee, name='update'),
+
+    path('employee/delete/<int:pk>/', views.delete_employee, name='delete'),
 ]

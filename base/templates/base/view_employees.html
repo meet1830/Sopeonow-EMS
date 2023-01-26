@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>DOB</th>
+            <th>Date of birth</th>
             <th>Date of joining</th>
             <th>Department</th>
             <th>Designation</th>
@@ -43,6 +43,7 @@
             <td>{{emp.active}}</td>
             <td>
                 <a href="{% url 'update' emp.id %}">Edit</a>
+                <a href="{% url 'delete' emp.id %}">Delete</a>
             </td>
         </tr>
         {% endfor %}
