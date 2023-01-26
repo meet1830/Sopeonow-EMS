@@ -3,13 +3,14 @@
 {% block content %}
 
 <h1>Employees list</h1>
-<h3>Total number of employees: {{employees_count}}</h3>
+<h3>Employees {{employees_count}}</h3>
 <a href="{% url 'add' %}">Add a new employee</a>
 
 {% if employees %}
 <table>
     <thead>
         <tr>
+            <th>Sr. No</th>
             <th>Name</th>
             <th>Date of birth</th>
             <th>Date of joining</th>
@@ -25,10 +26,11 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
 
+    <tbody>
         {% for emp in employees %}
         <tr>
+            <td>{{forloop.counter}}</td>
             <td>{{emp.name}}</td>
             <td>{{emp.dob}}</td>
             <td>{{emp.doj}}</td>
@@ -38,9 +40,21 @@
             <td>{{emp.state}}</td>
             <td>{{emp.country}}</td>
             <td>{{emp.zipcode}}</td>
-            <td>0</td>
-            <td>{{emp.on_leave}}</td>
-            <td>{{emp.active}}</td>
+            <td>{{emp.leaves}}</td>
+            <td>
+                {% if emp.on_leave %}
+                <a href="{% url 'leave' emp.id %}">On leave</a>
+                {% else %}
+                <a href="{% url 'leave' emp.id %}">At work</a>
+                {% endif %}
+            </td>
+            <td>
+                {% if emp.active %}
+                <span>Active</span>
+                {% else %}
+                <span>Inactive</span>
+                {% endif %}
+            </td>
             <td>
                 <a href="{% url 'update' emp.id %}">Edit</a>
                 <a href="{% url 'delete' emp.id %}">Delete</a>
