@@ -82,9 +82,9 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sopeonow_EMS',
-        'USER': 'EMS',
-        'PASSWORD': 'EMSPass',
+        'NAME': 'Sopeonow_EMS',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '3306'
     }

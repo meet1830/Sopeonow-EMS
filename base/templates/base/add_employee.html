@@ -4,41 +4,31 @@
 
 <h1>Add a new Employee</h1>
 
-<form action="/add-employee/" method="POST">
-    {% csrf_token %}
+<div>
+    <form method="post" id="EmployeeForm" data-roles-url="{% url 'ajax_load_roles' %}" role="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
-    <label for="name">Name</label><br>
-    <input type="text" id="name" name="name" value="{{ name }}"><br>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_department").change(function () {
+        const url = $("#EmployeeForm").attr("data-roles-url");  // get the url of the `load_roles` view
+        const departmentId = $(this).val();  // get the selected department ID from the HTML input
 
-    <label for="dob">Date of Birth</label><br>
-    <input type="date" name="dob" id="dob" value="{{dob}}" required><br>
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /members/ajax/load-roles/ )
+            data: {
+                'department_id': departmentId       // GET parameters
+            },
+            success: function (data) {
+                $("#id_role").html(data);
+            }
+        });
 
-    <label for="doj">Date of Joining</label><br>
-    <input type="date" name="doj" id="doj" value="{{doj}}" required><br>
-
-    <label for="dept">Department</label><br>
-    <input type="number" id="dept" name="dept" value="{{ dept }}" required><br>
-
-    <label for="role">Job Role</label><br>
-    <input type="number" id="role" name="role" value="{{ role }}" required><br>
-
-    <label for="address">Address</label><br>
-    <textarea id="address" name="address" rows="3"></textarea><br>
-
-    <label for="zipcode">Zipcode</label><br>
-    <input type="text" id="zipcode" name="zipcode" value="{{ zipcode }}"><br>
-
-    <label for="city">City</label><br>
-    <input type="text" id="city" name="city" value="{{ city }}"><br>
-
-    <label for="state">State</label><br>
-    <input type="text" id="state" name="state" value="{{ state }}"><br>
-
-    <label for="country">Country</label><br>
-    <input type="text" id="country" name="country" value="{{ country }}"><br>
-
-    <hr>
-    <button type="submit">Submit</button>
-</form>
+    });
+</script>
 
 {% endblock %}

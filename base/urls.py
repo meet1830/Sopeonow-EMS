@@ -19,6 +19,10 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('employee-list/', views.view_employees, name="view_employees"),
-    path('add-employee/', views.add_employee, name="add_employee"),
+
+    path('employee/view', views.view_employees, name="view"),
+
+    path('employee/add', views.add_employee, name="add"),
+    path('member/ajax/load-roles/', views.load_roles,
+         name='ajax_load_roles'),  # AJAX
 ]
