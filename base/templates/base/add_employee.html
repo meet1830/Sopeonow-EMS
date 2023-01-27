@@ -2,15 +2,118 @@
 
 {% block content %}
 
-<h1>Add a new Employee</h1>
-
-<div>
-    <form method="post" id="EmployeeForm" data-roles-url="{% url 'ajax_load_roles' %}" role="form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit">
-        <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
-    </form>
+<div class="card container" id="width">
+    <div class="card-body">
+        <h3 class="card-title">{{Title}} Employee</h3>
+        <form method="post" id="EmployeeForm" data-roles-url="{% url 'ajax_load_roles' %}" role="form" class="my-3">
+            {% csrf_token %}
+            <div class="row my-2">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="name">
+                            Name: </label>
+                        {{form.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dob">
+                            Date of Birth: </label>
+                        {{ form.dob }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="doj">
+                            Date of Joining: </label>
+                        {{ form.doj }}
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="department">
+                            Department: </label>
+                        {{ form.department }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="role">
+                            Designation: </label>
+                        {{ form.role }}
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="address">
+                            Address: </label>
+                        {{ form.address }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group my-1">
+                        <label for="country">
+                            Country: </label>
+                        {{ form.country }}
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="state">
+                            State: </label>
+                        {{ form.state }}
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="city">
+                            City: </label>
+                        {{ form.city }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="zipcode">
+                            Zipcode: </label>
+                        {{ form.zipcode }}
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="leaves">
+                            No of leave days: </label>
+                        {{ form.leaves }}
+                    </div>
+                </div>
+                <div class="col-md-6" id="employee-add-check">
+                    <div class="form-group employee-add-checkbox">
+                        <label for="active">
+                            Active: </label>
+                        {{ form.active }}
+                    </div>
+                    <div class="form-group employee-add-checkbox">
+                        <label for="on_leave">
+                            On Leave: </label>
+                        {{ form.on_leave }}
+                    </div>
+                </div>
+            </div>
+            <div id="employee-btn">
+                <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">Cancel</a>
+                <input type="submit" value="Submit" class="btn btn-success">
+            </div>
+    </div>
+</div>
+</form>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

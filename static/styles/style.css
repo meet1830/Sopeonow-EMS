@@ -1,0 +1,25 @@
+#width{
+    width: 40rem;
+}
+
+#employee-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0rem 1rem;
+}
+
+#employee-list-table {
+    overflow: auto;
+}
+
+#employee-add-check {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.employee-add-checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}

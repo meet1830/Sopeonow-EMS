@@ -1,5 +1,6 @@
 from django import forms
 from base.models import Employee, Role
+import datetime
 
 
 class DateInput(forms.DateInput):
@@ -10,19 +11,27 @@ class AddEmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
         fields = '__all__'
-        widgets = {'name': forms.TextInput(),
-                   'dob': DateInput(),
-                   'doj': DateInput(),
-                   'department': forms.Select(),
-                   'role': forms.Select(),
-                   'address': forms.Textarea(),
-                   'city': forms.TextInput(),
-                   'state': forms.TextInput(),
-                   'country': forms.TextInput(),
-                   'zipcode': forms.TextInput(),
-                   #    'active': forms.BooleanField(),
-                   #    'on_leave': forms.BooleanField(),
+        widgets = {'name': forms.TextInput(attrs={'class': 'form-control'}),
+                   'dob': DateInput(attrs={'class': 'form-control'}),
+                   'doj': DateInput(attrs={'class': 'form-control'}),
+                   'department': forms.Select(attrs={'class': 'form-control', 'type': 'button'}),
+                   'role': forms.Select(attrs={'class': 'form-control', 'type': 'button'}),
+                   'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+                   'city': forms.TextInput(attrs={'class': 'form-control'}),
+                   'state': forms.TextInput(attrs={'class': 'form-control'}),
+                   'country': forms.TextInput(attrs={'class': 'form-control'}),
+                   'zipcode': forms.NumberInput(attrs={'class': 'form-control'}),
+                   'leaves': forms.NumberInput(attrs={'class': 'form-control'}),
+                   'active': forms.CheckboxInput(),
+                   'on_leave': forms.CheckboxInput(),
                    }
+
+    def clean_dob(self):
+        date = self.cleaned_data['dob']
+        if date > datetime.date.today():  # 🖘 raise error if greater than
+            raise forms.ValidationError(
+                "Date of birth cannot be in the future!")
+        return date
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

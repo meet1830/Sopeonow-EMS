@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 
@@ -30,8 +31,9 @@ class Employee(models.Model):
     city = models.CharField(max_length=100, null=True)
     state = models.CharField(max_length=100, null=True)
     country = models.CharField(max_length=100, null=True)
-    zipcode = models.CharField(max_length=6, null=True)
-    leaves = models.IntegerField(null=True, default=0)
+    zipcode = models.PositiveIntegerField(
+        null=True, validators=[MaxValueValidator(999999)])
+    leaves = models.PositiveIntegerField(null=True, default=0)
     active = models.BooleanField(default=True)
     on_leave = models.BooleanField(default=False)
 

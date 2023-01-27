@@ -14,8 +14,8 @@ def home(request):
 
 def view_employees(request):
     employees = Employee.objects.all()
-    employees_count = employees.count()
-    context = {'employees': employees, 'employees_count': employees_count}
+    employeesCount = employees.count()
+    context = {'employees': employees, 'employees_count': employeesCount}
     return render(request, 'base/view_employees.html', context)
 
 
@@ -24,9 +24,13 @@ def add_employee(request):
     if request.method == 'POST':
         form = AddEmployeeForm(request.POST)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            if (obj.on_leave == True):
+                obj.leaves += 1
+            obj.save()
             return redirect('view')
-    return render(request, 'base/add_employee.html', {'form': form})
+    context = {'form': form, 'Title': 'Add'}
+    return render(request, 'base/add_employee.html', context)
 
 
 def update_employee(request, pk):
@@ -35,9 +39,13 @@ def update_employee(request, pk):
     if request.method == 'POST':
         form = AddEmployeeForm(request.POST, instance=employee)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            if (obj.on_leave == True):
+                obj.leaves += 1
+            obj.save()
             return redirect('view')
-    return render(request, 'base/add_employee.html', {'form': form})
+    context = {'form': form, 'Title': 'Edit'}
+    return render(request, 'base/add_employee.html', context)
 
 
 # AJAX
