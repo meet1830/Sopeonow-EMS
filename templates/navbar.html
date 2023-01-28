@@ -1,6 +1,34 @@
-<a href="/">
-    <h1>LOGO</h1>
-    <a href="{% url 'view' %}">Employee list</a>
-</a>
-
-<hr>
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-gradient">
+    <div class="container container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="{% static '/images/logo.png' %}" alt="SOPEONOW" class="company-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <ul class="navbar-nav">
+                {% url 'home' as url %}
+                <li class="nav-item">
+                    <a class="nav-link active" id="{% if request.path == url %}current{% endif %}" aria-current="page"
+                        href="{% url 'home' %}">Home</a>
+                </li>
+                {% url 'list' as url %}
+                <li class="nav-item">
+                    <a class="nav-link active" id="{% if request.path == url %}current{% endif %}" aria-current="page"
+                        href="{% url 'list' %}">Employee
+                        List</a>
+                </li>
+                {% url 'add' as url %}
+                <li class="nav-item">
+                    <a class="nav-link active" id="{% if request.path == url %}current{% endif %}" aria-current="page"
+                        href="{% url 'add' %}">Create Employee</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

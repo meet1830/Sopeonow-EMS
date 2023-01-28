@@ -2,12 +2,17 @@
 
 {% block content %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <p>Are you sure you want to delete employee "{{obj}}"?</p>
-
-    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-    <input type="submit" value="Confirm" />
-</form>
+<div class="confirm-wrapper">
+    <div class="card shadow bg-white rounded" id="confirm-card-wrapper">
+        <form class="card-body" method="POST" action="">
+            {% csrf_token %}
+            <p>Are you sure you want to delete employee <b>"{{obj}}"</b>?</p>
+            <div class="btns">
+                <a class="btn btn-primary" href="{{request.META.HTTP_REFERER}}">Go Back</a>
+                <input class="btn btn-danger" type="submit" value="Confirm" />
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<!-- <h1>Employee Details</h1> -->
+
+<div class="container employee-details-wrapper">
+    <div class="card shadow bg-white rounded employee-details-card">
+        <div>
+            <img src="{% static '/images/profile.jpg' %}" alt="profile-image" class="rounded-circle">
+        </div>
+        <div class="employee-detail-content-wrapper">
+            <div class="row" id="btn-edit">
+                <div>
+                    <a class="btn btn-outline-primary" href="{% url 'update' emp.id %}">Edit Employee
+                        Details</a>
+                </div>
+            </div>
+            <div id="employee-detail-content" class="row">
+                <div class="employee-detail-name">
+                    <h3>{{emp.name}}</h3>
+                </div>
+                <div id="employee-detail-content-left" class="col-md-6">
+                    <div>
+                        <h4>Basic Details</h4>
+                        <p><b>Department:</b> {{emp.department}}</p>
+                        <p><b>Designation:</b> {{emp.role}}</p>
+                    </div>
+                    <div>
+                        <h4>Other Details</h4>
+                        <p><b>No of Leaves Days:</b> {{emp.leaves}}</p>
+                        <p><b>Leave/Working:</b>
+                            {% if emp.on_leave %}
+                            At work
+                            {% else %}
+                            On leave
+                            {% endif %}
+                        </p>
+                        <p><b>Status:</b>
+                            {% if emp.active %}
+                            <span>Active</span>
+                            {% else %}
+                            <span>Inactive</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <h4>Contact Details</h4>
+                        <p><b>Address:</b> {{emp.address}}</p>
+                        <div class="employee-details-address-content">
+                            <div>
+                                <p class="employee-details-address-content-left"><b>City:</b> {{emp.city}}</p>
+                                <p class="employee-details-address-content-left"><b>Zipcode:</b> {{emp.zipcode}}</p>
+                            </div>
+                            <div>
+                                <p><b>State:</b> {{emp.state}}</p>
+                                <p><b>Country:</b> {{emp.country}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h4>Personal Details</h4>
+                            <p><b>Date of Birth:</b> {{emp.dob}}</p>
+                            <p><b>Date of Joining:</b> {{emp.doj}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="btn-bottom">
+                {% if emp.on_leave %}
+                <a class="btn btn-outline-danger" href="{% url 'leave' emp.id %}">Mark on leave</a>
+                {% else %}
+                <a class="btn btn-outline-primary" href="{% url 'leave' emp.id %}">Mark at work</a>
+                {% endif %}
+                <a class="btn btn-danger" href="{% url 'delete' emp.id %}">Delete Employee</a>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

@@ -2,12 +2,17 @@
 
 {% block content %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <p>Are you sure you want to change leave status to "{{status}}"?</p>
-
-    <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
-    <input type="submit" value="Confirm" />
-</form>
+<div class="confirm-wrapper">
+    <div class="card shadow bg-white rounded" id="confirm-card-wrapper">
+        <form class="card-body" method="POST" action="">
+            {% csrf_token %}
+            <p>Are you sure you want to change leave status to <b>"{{status}}"</b>?</p>
+            <div class="btns">
+                <a class="btn btn-primary" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+                <input class="btn btn-danger" type="submit" value="Confirm" />
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock content %}

@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name="home"),
 
-    path('employee/view', views.view_employees, name="view"),
+    path('employee/list', views.view_employees, name="list"),
 
     path('employee/add', views.add_employee, name="add"),
     path('employee/ajax/load-roles/', views.load_roles,
@@ -31,4 +31,6 @@ urlpatterns = [
     path('employee/delete/<int:pk>/', views.delete_employee, name='delete'),
 
     path('employee/leave/<int:pk>/', views.leave_status, name='leave'),
+
+    path('employee/view/<int:pk>/', views.employee_detail, name='view')
 ]

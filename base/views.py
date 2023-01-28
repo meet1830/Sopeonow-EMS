@@ -28,7 +28,7 @@ def add_employee(request):
             if (obj.on_leave == True):
                 obj.leaves += 1
             obj.save()
-            return redirect('view')
+            return redirect('list')
     context = {'form': form, 'Title': 'Add'}
     return render(request, 'base/add_employee.html', context)
 
@@ -43,7 +43,7 @@ def update_employee(request, pk):
             if (obj.on_leave == True):
                 obj.leaves += 1
             obj.save()
-            return redirect('view')
+            return redirect(f'/employee/view/{pk}')
     context = {'form': form, 'Title': 'Edit'}
     return render(request, 'base/add_employee.html', context)
 
@@ -59,7 +59,7 @@ def delete_employee(request, pk):
     employee = get_object_or_404(Employee, pk=pk)
     if request.method == 'POST':
         employee.delete()
-        return redirect('view')
+        return redirect('list')
     return render(request, 'base/delete.html', {'obj': employee})
 
 
@@ -79,7 +79,13 @@ def leave_status(request, pk):
             employee.on_leave = True
 
         employee.save()
-        return redirect('view')
+        return redirect(f'/employee/view/{pk}')
 
     context = {'obj': employee, 'status': status}
     return render(request, 'base/leave_status.html', context)
+
+
+def employee_detail(request, pk):
+    employee = get_object_or_404(Employee, pk=pk)
+    context = {'emp': employee}
+    return render(request, 'base/employee_details.html', context)
