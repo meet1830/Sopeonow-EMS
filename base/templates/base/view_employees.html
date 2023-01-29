@@ -2,44 +2,73 @@
 
 {% block content %}
 
-<h1>Employees list</h1>
-<h3>Employees {{employees_count}}</h3>
-<a href="{% url 'add' %}">Add a new employee</a>
+<div class="employee-list-wrapper">
+    <div class="shadow bg-white rounded card employee-list-child-wrapper">
+        <div class="card-body" id="employee-list-table-parent">
+            <div id="employee-list-headers">
+                <div>
+                    <p id="employee-list-headers-employee">
+                        {% if query %}
+                        Search Results
+                        {% else %}
+                        Employee
+                        {% endif %}
+                        <span id="employee-list-headers-employee-count">{{employees_count}}</span>
+                    </p>
+                </div>
+                <div>
+                    <form action="{% url 'list' %}">
+                        <input class="form-control" type="text" name="q" placeholder="Search employees..." />
+                    </form>
+                </div>
+                <div>
+                    {% if query %}
+                    <a class="btn btn-primary btn-cancel" href="{% url 'list' %}">Go back</a>
+                    {% endif %}
+                    <a class="btn btn-submit" href="{% url 'add' %}">Create Employee</a>
+                </div>
+            </div>
 
-{% if employees %}
-<div class="table-responsive">
-    <center>
-        <table class="table table-light table-bordered table-sm align-middle text-center shadow bg-white rounded"
-            id="employee-list-table">
-            <thead>
-                <tr>
-                    <th>Sr. No</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Designation</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+            {% if employees %}
+            <div id="employee-list-table">
+                <div class="table-responsive">
+                    <center>
+                        <table class="table table-bordered table-sm align-middle text-center">
+                            <thead>
+                                <tr id="table-header">
+                                    <th>Sr. No</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Designation</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
 
-            <tbody>
-                {% for emp in employees %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td>{{emp.name}}</td>
-                    <td>{{emp.department}}</td>
-                    <td>{{emp.role}}</td>
-                    <td><a class="btn btn-outline-primary" href="{% url 'view' emp.id %}">View</a></td>
-                </tr>
-                {% endfor %}
+                            <tbody>
+                                {% for emp in employees %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{emp.name}}</td>
+                                    <td>{{emp.department}}</td>
+                                    <td>{{emp.role}}</td>
+                                    <td><a class="btn btn-outline-primary btn-cancel"
+                                            href="{% url 'view' emp.id %}">View</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
 
-            </tbody>
-        </table>
-    </center>
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+
+            {% else %}
+            <h3>No employees to show!</h3>
+
+            {% endif %}
+        </div>
+    </div>
 </div>
-
-{% else %}
-<h3>No employees to show!</h3>
-
-{% endif %}
 
 {% endblock %}

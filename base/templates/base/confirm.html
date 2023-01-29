@@ -6,10 +6,10 @@
     <div class="card shadow bg-white rounded" id="confirm-card-wrapper">
         <form class="card-body" method="POST" action="">
             {% csrf_token %}
-            <p>Are you sure you want to change leave status to <b>"{{status}}"</b>?</p>
+            <p>{{message}}</p>
             <div class="btns">
-                <a class="btn btn-primary" href="{{request.META.HTTP_REFERER}}">Cancel</a>
-                <input class="btn btn-danger" type="submit" value="Confirm" />
+                <a class="btn btn-primary btn-cancel" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+                <input class="btn btn-danger btn-submit" type="submit" value="Confirm" />
             </div>
         </form>
     </div>

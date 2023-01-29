@@ -25,6 +25,7 @@ urlpatterns = [
     path('employee/add', views.add_employee, name="add"),
     path('employee/ajax/load-roles/', views.load_roles,
          name='ajax_load_roles'),  # AJAX
+    path('employee/add/success', views.add_employee_success, name="addSuccess"),
 
     path('employee/update/<int:pk>/', views.update_employee, name='update'),
 
@@ -32,5 +33,5 @@ urlpatterns = [
 
     path('employee/leave/<int:pk>/', views.leave_status, name='leave'),
 
-    path('employee/view/<int:pk>/', views.employee_detail, name='view')
+    path('employee/view/<int:pk>/', views.employee_detail, name='view'),
 ]

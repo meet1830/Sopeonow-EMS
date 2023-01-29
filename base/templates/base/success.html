@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="confirm-wrapper">
+    <div class="card shadow bg-white rounded" id="confirm-card-wrapper">
+        <div class="card-body">
+            <p>{{message}}</p>
+            <div class="btns">
+                <a class="btn btn-primary btn-submit" href="{% url 'list' %}">Go to Employee list</a>
+                <a class="btn btn-primary btn-cancel" href="{% url 'add' %}">Add another employee</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

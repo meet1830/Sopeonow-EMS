@@ -46,6 +46,99 @@ h4{
     border-bottom: 1px solid grey;
 }
 
+#home-title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-title {
+    width: 90%;
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+#home-title-heading {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+}
+
+#home-title-content-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+#home-title-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.home-title-card {
+    border: 1px solid;
+    height: 180px;
+    max-width: 370px;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.home-title-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.home-title-card-content-p {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.home-title-card-number {
+    font-size: 5rem;
+    font-weight: 600;
+    padding: 1rem;
+}
+
+#home-title-card-left {
+    border: 2px solid rgb(255, 80, 80, 1);
+}
+
+#home-title-card-right {
+    border: 2px solid rgb(0, 153, 255, 1);
+}
+
+#chart {
+    width: 500px;
+}
+
+.btn-cancel {
+    background-color: rgb(232, 230, 230) !important;
+    border: solid rgb(232, 230, 230) !important;
+    color: black !important;
+}
+
+.btn-submit {
+    background-color: rgb(255, 77, 77) !important;
+    border: solid rgb(255, 77, 77) !important;
+    color: white !important;
+}
+
 .employee-details-address-content {
     display: flex;
     align-items: center;
@@ -59,7 +152,7 @@ h4{
 
 .employee-details-wrapper {
     width: 100%;
-    height: calc(100vh - 5.1rem);
+    padding-top: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,12 +180,75 @@ h4{
     width: 100%;
 }
 
-#btn-edit a {
-    position: absolute;
-    top: -2.5rem;
-    left: auto;
-    bottom: auto;
-    right: 0;
+@media only screen and (min-width: 992px) {
+    #btn-edit-left {
+        position: absolute;
+        top: -2.5rem;
+        bottom: auto;
+        right: auto;
+        left: 0;
+    }
+    
+    #btn-edit-right {
+        position: absolute;
+        top: -2.5rem;
+        bottom: auto;
+        right: 0;
+        left: auto;
+    }
+
+    #employee-detail-content {
+        width: 100%;
+        margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #btn-edit-left {
+        position: absolute;
+        top: 1.5rem;
+        bottom: auto;
+        right: auto;
+        left: 0;
+    }
+    
+    #btn-edit-right {
+        position: absolute;
+        top: 1.5rem;
+        bottom: auto;
+        right: 0;
+        left: auto;
+    }
+
+    #employee-detail-content {
+        width: 100%;
+        margin: 20px;
+        margin-top: 4.5rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #btn-edit-left {
+        position: absolute;
+        top: 1.5rem;
+        bottom: auto;
+        right: auto;
+        left: auto;
+    }
+    
+    #btn-edit-right {
+        position: absolute;
+        top: 4.5rem;
+        bottom: auto;
+        right: auto;
+        left: auto;
+    }
+
+    #employee-detail-content {
+        width: 100%;
+        margin: 20px;
+        margin-top: 7.5rem;
+    }
 }
 
 #btn-bottom {
@@ -108,11 +264,6 @@ h4{
     width: 10rem;
 }
 
-#employee-detail-content {
-    width: 100%;
-    margin: 20px;
-}
-
 .employee-detail-name {
     text-align: center;
 }
@@ -121,8 +272,10 @@ h4{
     border-right: 1px solid grey;
 }
 
-#width{
+#add-employee-wrapper{
     width: 40rem;
+    height: calc(100vh - 7rem);
+    overflow: auto;
 }
 
 #employee-btn {
@@ -131,10 +284,48 @@ h4{
     gap: 0rem 1rem;
 }
 
-#employee-list-table {
-    overflow: auto;
-    width: 60rem;
+.employee-list-wrapper {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.employee-list-child-wrapper {
+    width: 80%;
+}
+
+#employee-list-headers {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+#employee-list-headers-employee {
+    color: rgb(0, 0, 166);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#employee-list-headers-employee-count {
+    color: black;
+    padding: 0.35rem 0.75rem;
+    background-color: #ffcccc;
+    border-radius: 50%;
+}
+
+#employee-list-table {
+    width: 100%;
+    height: calc(100vh - 14rem);
+    overflow: auto;
+    background-color: white;
+}
+
+#table-header {
+    background-color: #ffcccc;
+}
+
+
 
 #employee-add-check {
     display: flex;
@@ -154,10 +345,12 @@ h4{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    font-weight: 500;
 }
 
 #confirm-card-wrapper {
-    width: 20rem;
+    width: 30rem;
     border: 1px solid blue;
 }
 

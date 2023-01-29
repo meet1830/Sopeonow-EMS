@@ -2,9 +2,67 @@
 
 {% block content %}
 
-<h1>Home Page</h1>
+<div id="home-title-wrapper">
+    <div class="card home-title shadow bg-white rounded">
+        <div class="card-body">
+            <p id="home-title-heading">Welcome to SOPEONOW EMS</p>
+            <div id="home-title-content-wrapper">
+                <div id="chart">
+                    <canvas id="myChart1"></canvas>
+                </div>
+                <div id="home-title-card-wrapper">
+                    <div class="home-title-card" id="home-title-card-left">
+                        <div class="home-title-card-content">
+                            <p class="home-title-card-content-p">Total employees</p>
+                            <a class="btn btn-primary btn-submit" href="{% url 'list' %}">Employee
+                                List</a>
+                        </div>
+                        <p class="home-title-card-number">{{employees}}</p>
+                    </div>
+                    <div class="home-title-card" id="home-title-card-right">
+                        <div class="home-title-card-content">
+                            <p class="home-title-card-content-p">Employees on leave</p>
+                            <a class="btn btn-primary btn-submit" href="{% url 'add' %}">Create
+                                Employee</a>
+                        </div>
+                        <p class="home-title-card-number">{{empOnLeave}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3>Total no. of employees: {{employees}}</h3>
-<h3>No. of employees on leave: {{emp_on_leave}}</h3>
+<script>
+    var ctx = document.getElementById('myChart1').getContext('2d');
+    var myChart1 = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: {{ labels| safe}},
+    datasets: [{
+        label: 'Employee Chart',
+        data: {{ data| safe}},
+        backgroundColor: [
+        'rgb(255, 80, 80, 1)',
+        'rgb(0, 153, 255, 1)',
+    ],
+        borderColor: [
+        'rgb(255, 80, 80, 1)',
+        'rgb(0, 153, 255, 1)',
+    ],
+        borderWidth: 1
+    }]
+        },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    display: false
+                },
+            }],
+        }
+    }
+    });
+</script>
 
 {% endblock %}

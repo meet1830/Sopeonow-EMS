@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-<!-- <h1>Employee Details</h1> -->
+<!-- <992 <768-->
 
 <div class="container employee-details-wrapper">
     <div class="card shadow bg-white rounded employee-details-card">
@@ -12,7 +12,14 @@
         <div class="employee-detail-content-wrapper">
             <div class="row" id="btn-edit">
                 <div>
-                    <a class="btn btn-outline-primary" href="{% url 'update' emp.id %}">Edit Employee
+                    <a id="btn-edit-left" class="btn btn-outline-primary btn-cancel" href="{% url 'list' %}">Back to
+                        Employee
+                        List</a>
+                </div>
+                <div>
+                    <a id="btn-edit-right" class="btn btn-outline-success btn-submit"
+                        href="{% url 'update' emp.id %}">Edit
+                        Employee
                         Details</a>
                 </div>
             </div>
@@ -31,9 +38,9 @@
                         <p><b>No of Leaves Days:</b> {{emp.leaves}}</p>
                         <p><b>Leave/Working:</b>
                             {% if emp.on_leave %}
-                            At work
-                            {% else %}
                             On leave
+                            {% else %}
+                            At work
                             {% endif %}
                         </p>
                         <p><b>Status:</b>
@@ -63,19 +70,19 @@
                     <div>
                         <div>
                             <h4>Personal Details</h4>
-                            <p><b>Date of Birth:</b> {{emp.dob}}</p>
-                            <p><b>Date of Joining:</b> {{emp.doj}}</p>
+                            <p><b>Date of Birth:</b> {{dob}}</p>
+                            <p><b>Date of Joining:</b> {{doj}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="btn-bottom">
                 {% if emp.on_leave %}
-                <a class="btn btn-outline-danger" href="{% url 'leave' emp.id %}">Mark on leave</a>
+                <a class="btn btn-outline-primary btn-cancel" href="{% url 'leave' emp.id %}">Mark at work</a>
                 {% else %}
-                <a class="btn btn-outline-primary" href="{% url 'leave' emp.id %}">Mark at work</a>
+                <a class="btn btn-outline-danger btn-cancel" href="{% url 'leave' emp.id %}">Mark on leave</a>
                 {% endif %}
-                <a class="btn btn-danger" href="{% url 'delete' emp.id %}">Delete Employee</a>
+                <a class="btn btn-danger btn-submit" href="{% url 'delete' emp.id %}">Delete Employee</a>
             </div>
         </div>
     </div>
