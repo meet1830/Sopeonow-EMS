@@ -40,7 +40,8 @@
                                     <th>Name</th>
                                     <th>Department</th>
                                     <th>Designation</th>
-                                    <th>Action</th>
+                                    <th>Leave/Working</th>
+                                    <th>View</th>
                                 </tr>
                             </thead>
 
@@ -51,6 +52,13 @@
                                     <td>{{emp.name}}</td>
                                     <td>{{emp.department}}</td>
                                     <td>{{emp.role}}</td>
+                                    <td>
+                                        {% if emp.on_leave %}
+                                        On leave
+                                        {% else %}
+                                        At work
+                                        {% endif %}
+                                    </td>
                                     <td><a class="btn btn-outline-primary btn-cancel"
                                             href="{% url 'view' emp.id %}">View</a>
                                     </td>

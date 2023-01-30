@@ -21,7 +21,7 @@ class AddEmployeeForm(forms.ModelForm):
                    'state': forms.TextInput(attrs={'class': 'form-control'}),
                    'country': forms.TextInput(attrs={'class': 'form-control'}),
                    'zipcode': forms.NumberInput(attrs={'class': 'form-control'}),
-                   'leaves': forms.NumberInput(attrs={'class': 'form-control'}),
+                   'leaves': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
                    'active': forms.CheckboxInput(),
                    'on_leave': forms.CheckboxInput(),
                    }
